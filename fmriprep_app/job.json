@@ -1,0 +1,25 @@
+{
+  "name": "test fmriprep",
+  "appId": "urrutia-fmriprep-1.5.7",
+  "archive": true,
+  "archivePath": "testing/fmriprep-1.5.7",
+  "archiveSystem": "a2cps.home.urrutia",
+  "archiveOnAppError": true,
+  "inputs": {
+    "BIDS_DIRECTORY": "agave://a2cps.storage.public/a2cps_openneuro_testdata/"
+  },
+  "parameters": {
+    "PARTICIPANT_LABEL": "sub-01",
+    "OUTPUT_DIR": "outputs"
+  },
+  "notifications": [
+      {
+          "event": "FAILED",
+          "url": "jurrutia@tacc.utexas.edu"
+      },
+      {
+          "event": "FINISHED",
+          "url": "jurrutia@tacc.utexas.edu"
+      }
+  ]
+}
