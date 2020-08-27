@@ -1,12 +1,15 @@
 {
   "checkpointable": false,
   "name": "{{ agave.username }}-{{ app.name }}",
-  "executionSystem": "{{ app.execution_system }}",
-  "executionType": "BATCH",
+  "executionSystem": "{{ app.hpc_system }}",
+  "executionType": "HPC",
   "deploymentPath": "{{ username }}/apps/{{ app.name }}-{{ app.version }}",
-  "deploymentSystem": "{{ app.deployment_system }}",
+  "deploymentSystem": "{{ app.storage_system }}",
+  "defaultProcessorsPerNode": 1,
+  "defaultNodeCount": 1,
+
   "helpURI": "",
-  "label": "{{ app.label }}",
+  "label": "MRIQC",
   "shortDescription": "{{ app.description }}",
   "longDescription": "",
   "modules": [
