@@ -1,0 +1,5 @@
+FROM ubuntu:bionic
+
+FROM poldracklab/mriqc:0.15.1
+
+ADD opt /opt
