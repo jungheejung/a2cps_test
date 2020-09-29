@@ -1,25 +1,16 @@
 {
   "name": "test mriqc",
-  "appId": "heejung-mriqc-0.15.1",
+  "appId": "urrutia-mriqc-0.15.1",
   "archive": true,
+  "maxRunTime": "24:00:00",
   "archivePath": "testing/mriqc-0.15.1",
-  "archiveSystem": "a2cps.home.heejung",
+  "archiveSystem": "a2cps.home.urrutia",
   "archiveOnAppError": true,
   "inputs": {
-    "BIDS_DIRECTORY": "agave://a2cps.storage.public/a2cps_openneuro_testdata/"
+    "BIDS_DIRECTORY": "agave://a2cps.storage.public/a2cps_openneuro_testdata"
   },
   "parameters": {
-    "PARTICIPANT_LABEL": "sub-02",
+    "PARTICIPANT_LABEL": "02",
     "OUTPUT_DIR": "outputs"
-  },
-  "notifications": [
-      {
-          "event": "FAILED",
-          "url": "Hee.Jung.Jung.GR@dartmouth.edu"
-      },
-      {
-          "event": "FINISHED",
-          "url": "Hee.Jung.Jung.GR@dartmouth.edu"
-      }
-  ]
+  }
 }
