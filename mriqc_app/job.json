@@ -4,7 +4,7 @@
   "archive": true,
   "maxRunTime": "24:00:00",
   "archivePath": "testing/mriqc-0.15.1",
-  "archiveSystem": "a2cps.home.urrutia",
+  "archiveSystem": "a2cps.home.heejung",
   "archiveOnAppError": true,
   "inputs": {
     "BIDS_DIRECTORY": "agave://a2cps.storage.public/a2cps_openneuro_testdata"
