@@ -1,6 +1,6 @@
 {
   "name": "test mriqc",
-  "appId": "urrutia-mriqc-0.15.1",
+  "appId": "heejung-mriqc-0.15.1",
   "archive": true,
   "maxRunTime": "24:00:00",
   "archivePath": "testing/mriqc-0.15.1",
