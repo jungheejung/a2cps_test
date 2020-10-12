@@ -1,9 +1,9 @@
 {
   "name": "test mriqc",
-  "appId": "heejung-mriqc-0.15.1",
+  "appId": "a2cps-mriqc-0.15.1",
   "archive": true,
   "maxRunTime": "24:00:00",
-  "archivePath": "testing/mriqc-0.15.1",
+  "archivePath": "a2cps/mriqc-0.15.1",
   "archiveSystem": "a2cps.home.heejung",
   "archiveOnAppError": true,
   "inputs": {
