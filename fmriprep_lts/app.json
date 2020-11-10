@@ -27,7 +27,7 @@
       ]
     },
     "details": {
-      "label": "The root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder)."
+      "description": "The root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder)."
     }
   }],
   "parameters": [{
@@ -50,16 +50,18 @@
         "required": false
       },
       "details": {
-        "label": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
-        "showArgument": true,
+        "description": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
+        "showArgument": false,
         "argument": "participant --participant_label "
       }
     },
     {
       "id": "OUTPUT_DIR",
+      "details": {
+        "description": "The output directory name for the outcomes of preprocessing and visual reports"
+      },
       "value": {
         "default": "outputs",
-        "description": "the output path for the outcomes of preprocessing and visual reports",
         "type": "string",
         "visible": true,
         "required": true
@@ -68,12 +70,15 @@
 
 
     {
-      "id": "FIELDMAPS",
+      "id": "IGNORE_FIELD_MAPS",
+      "details": {
+        "argument": "--ignore fieldmaps ",
+        "showArgument": true,
+        "description": "Ignore distortion correction in the pipeline"
+      },
       "value": {
-        "default": "fieldmaps",
-        "description": "include distortion correction in the pipeline",
-        "type": "enum",
-        "enumValues": ["fieldmaps", "--ignore fieldmaps"],
+        "default": 0,
+        "type": "flag",
         "visible": true,
         "required": false
       }
@@ -81,12 +86,15 @@
 
 
     {
-      "id": "SLICE_TIMING",
+      "id": "IGNORE_SLICE_TIMING",
+      "details": {
+        "argument": "--ignore splicetiming ",
+        "showArgument": true,
+        "description": "Ignore slice timing correction for the functionals in the pipeline"
+      },
       "value": {
-        "default": "slicetiming",
-        "description": "include slice timing correction for the functionals in the pipeline",
-        "type": "enum",
-        "enumValues": ["slicetiming", "--ignore slicetiming"],
+        "default": 0,
+        "type": "flag",
         "visible": true,
         "required": false
       }
@@ -94,10 +102,14 @@
 
     {
       "id": "HEAD_MOTION",
+      "details": {
+        "argument": "--bold2t1w-dof ",
+        "showArgument": true,
+        "description": "Degrees of freedom when registering BOLD to T1w images. 9 degrees (rotation and translation) are used by default."
+      },
       "value": {
         "default": "9",
-        "description": "traditional head motion degrees of freedom",
-        "type": "enum",
+        "type": "enumeration",
         "enumValues": ["6", "9", "12"],
         "visible": true,
         "required": true
@@ -108,11 +120,11 @@
       "id": "DUMMY_SCANS",
       "details": {
         "argument": "--dummy-scans ",
-        "showArgument": true
+        "showArgument": true,
+        "description": "Number of non steady state volumes."
       },
       "value": {
-        "default": "",
-        "description": "Number of non steady state volumes",
+        "default": null,
         "type": "number",
         "visible": true,
         "required": false
@@ -122,11 +134,15 @@
 
     {
       "id": "ICA_AROMA_USE",
+      "details": {
+        "argument": "--use-aroma ",
+        "showArgument": true,
+        "description": "add ICA_AROMA to your preprocessing stream"
+      },
       "value": {
-        "default": "--use-aroma",
+        "default": 0,
         "description": "add ICA_AROMA to your preprocessing stream",
-        "type": "enum",
-        "enumValues": ["--use-aroma", ""],
+        "type": "flag",
         "visible": true,
         "required": false
       }
@@ -136,11 +152,11 @@
       "id": "ICA_AROMA_DIMENSIONALITY",
       "details": {
         "argument": "--aroma-melodic-dimensionality ",
-        "showArgument": true
+        "showArgument": true,
+        "description": "Exact or maximum number of MELODIC components to estimate (positive = exact, negative = maximum)"
       },
       "value": {
-        "default": "",
-        "description": "Exact or maximum number of MELODIC components to estimate (positive = exact, negative = maximum)",
+        "default": null,
         "type": "number",
         "visible": true,
         "required": false
@@ -153,11 +169,11 @@
       "id": "FD_SPIKE",
       "details": {
         "argument": "--fd-spike-threshold ",
-        "showArgument": true
+        "showArgument": true,
+        "description": "Threshold for flagging a frame as an outlier on the basis of framewise displacement"
       },
       "value": {
-        "default": "",
-        "description": "Threshold for flagging a frame as an outlier on the basis of framewise displacement",
+        "default": null,
         "type": "number",
         "visible": true,
         "required": false
@@ -167,14 +183,12 @@
     {
       "id": "CIFTI_OUTPUT",
       "details": {
-        "argument": "--cifti-output ",
-        "showArgument": true
+        "description": "output preprocessed BOLD as a CIFTI dense timeseries. Optionally, the number of grayordinate can be specified (default is 91k, which equates to 2mm resolution)"
       },
       "value": {
-        "default": "91k",
-        "description": "add ICA_AROMA to your preprocessing stream",
-        "type": "enum",
-        "enumValues": ["91k", "170k"],
+        "default": "",
+        "type": "enumeration",
+        "enumValues": ["--cifti-output 91k", "--cifti-output 170k", {"": "undefined"}],
         "visible": true,
         "required": false
       }
