@@ -3,8 +3,7 @@
 .agpy
 secrets.json
 .ACTOR_ID*
-config.yml 
-
+.actori*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
