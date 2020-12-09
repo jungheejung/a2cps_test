@@ -4,11 +4,53 @@ import sys
 import json
 
 
-def submit_fmriprep(r,participant_label):
+def check_metadata_file(r, file_uri):
+    ag = r.client
+    manifestUrl = file_uri
+    if manifestUrl is None:
+        try:
+            manifestUrl = context.file_uri
+        except Exception as e:
+            print("No file_uri specified")
+            exit(1)
+    (agaveStorageSystem, dirPath, manifestFileName) = \
+        agaveutils.from_agave_uri(uri=manifestUrl)
+    # get the manifest and start parsing it
+    manifestPath = dirPath + "/" + manifestFileName
+    try:
+        mani_file = agaveutils.agave_download_file(
+                    agaveClient=ag,
+                    agaveAbsolutePath=manifestPath,
+                    systemId=agaveStorageSystem,
+                    localFilename=manifestFileName
+                    )
+    except Exception as e:
+        r.on_failure("failed to get manifest {}".format(manifestUrl), e)
+
+    if mani_file is None:
+        r.on_failure("failed to get manifest {}".format(manifestUrl), e)
+
+    try:
+        manifest = json.load(open(manifestFileName))
+    except Exception as e:
+        r.on_failure("failed to load manifest {}".format(manifestUrl), e)
+
+    if 'cuff' in manifest['SeriesDescription']:
+        job_def = copy.copy(r.settings.cuff)
+        r.logger.info("Setting parameters for cuff image")
+    if 'rest' in manifest['SeriesDescription']:
+        job_def = copy.copy(r.settings.rest)
+        r.logger.info("Setting parameters for rest image")
+    else:
+        print("No cuff/rest specification found for: ", manifest['SeriesDescription'])
+        job_def = copy.copy(r.settings.rest)
+    return job_def
+
+
+def submit_fmriprep(r,participant_label, job_def):
     # Create agave client from reactor object
     ag = r.client
     # copy our job.json from config.yml
-    job_def = copy.copy(r.settings.fmriprep)
     parameters = job_def["parameters"]
     # Define the input for the job as the file that
     # was sent in the notificaton message
@@ -38,13 +80,17 @@ def main():
     # pull in reactor context
     context = r.context
     #print(context)
-    # get the file name from the message that was sent to the actor
+    # get the message that was sent to the actor
     message = context.message_dict
     print(message)
+    # check the file_uri from the message
+    file_uri = message['file_uri']
+    # depending on the file_uri, set fmriprp parameters for a rest or cuff fmri
+    job_def = check_metadata_file(r, file_uri)
     # pull in the participant_label
     participant_label = message['participant_label']
     # use submit function to submit job to fmriprep
-    submit_fmriprep(r,participant_label)
+    submit_fmriprep(r,participant_label,job_def)
 
 
 
