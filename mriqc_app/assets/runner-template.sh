@@ -33,8 +33,14 @@ echo container_exec ${CONTAINER_IMAGE} \
                ${OUTPUT_DIR} \
                participant --participant-label ${PARTICIPANT_LABEL} \
                --n_procs 16 \
-               --mem_gb 8 \
-               --ica --fft-spikes-detector --correct-slice-timing
+	             --mem_gb 8 \
+               ${ICA} \
+               ${STOP_IDX} \
+               ${START_IDX} \
+               ${FFT_SPIKES} \
+               ${WRITE_GRAPH} \
+               ${CORRECT_SLICE_TIMING} \
+               ${FD_THRESHOLD}
 
 container_exec ${CONTAINER_IMAGE} \
                mriqc \
@@ -43,7 +49,15 @@ container_exec ${CONTAINER_IMAGE} \
                participant --participant-label ${PARTICIPANT_LABEL} \
                --n_procs 16 \
 	             --mem_gb 8 \
-               --ica --fft-spikes-detector --correct-slice-timing
+               ${ICA} \
+               ${STOP_IDX} \
+               ${START_IDX} \
+               ${FFT_SPIKES} \
+               ${WRITE_GRAPH} \
+               ${CORRECT_SLICE_TIMING} \
+               ${FD_THRESHOLD}
+
+
 
 
 rm -rf ${DIR}
