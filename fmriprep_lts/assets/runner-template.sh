@@ -25,7 +25,7 @@ echo container_exec ${CONTAINER_IMAGE} \
                --notrack \
                --mem_mb 48000 \
                ${IGNORE_FIELD_MAPS} ${IGNORE_SLICE_TIMING} ${HEAD_MOTION} ${DUMMY_SCANS} \
-               ${ICA_AROMA_USE} ${ICA_AROMA_DIMENSIONALITY} ${FD_SPIKE} ${CIFTI_OUTPUT} \
+               ${ICA_AROMA_USE} ${ICA_AROMA_DIMENSIONALITY} ${FD_SPIKE} ${CIFTI_OUTPUT} ${ANAT_ONLY}\
                --fs-license-file /opt/freesurfer_license/license.txt
 
 container_exec ${CONTAINER_IMAGE} \
@@ -39,7 +39,7 @@ container_exec ${CONTAINER_IMAGE} \
                --notrack \
                --mem_mb 48000 \
                ${IGNORE_FIELD_MAPS} ${IGNORE_SLICE_TIMING} ${HEAD_MOTION} ${DUMMY_SCANS} \
-               ${ICA_AROMA_USE} ${ICA_AROMA_DIMENSIONALITY} ${FD_SPIKE} ${CIFTI_OUTPUT} \
+               ${ICA_AROMA_USE} ${ICA_AROMA_DIMENSIONALITY} ${FD_SPIKE} ${CIFTI_OUTPUT} ${ANAT_ONLY}\
                --fs-license-file /opt/freesurfer_license/license.txt
 
 rm -rf ${DIR}
