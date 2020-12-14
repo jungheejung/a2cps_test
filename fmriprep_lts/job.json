@@ -15,8 +15,7 @@
     "HEAD_MOTION": "9",
     "ICA_AROMA_USE": true,
     "ICA_AROMA_DIMENSIONALITY": -1,
-    "CIFTI_OUTPUT": "91k",
-    "ANAT_ONLY": true
+    "CIFTI_OUTPUT": "91k"
   },
   "notifications": [
       {
