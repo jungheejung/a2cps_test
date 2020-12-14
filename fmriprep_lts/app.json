@@ -116,70 +116,8 @@
       }
     },
 
-    {
-      "id": "DUMMY_SCANS",
-      "details": {
-        "argument": "--dummy-scans ",
-        "showArgument": true,
-        "description": "Number of non steady state volumes."
-      },
-      "value": {
-        "default": null,
-        "type": "number",
-        "visible": true,
-        "required": false
-      }
-
-    },
-
-    {
-      "id": "ICA_AROMA_USE",
-      "details": {
-        "argument": "--use-aroma ",
-        "showArgument": true,
-        "description": "add ICA_AROMA to your preprocessing stream"
-      },
-      "value": {
-        "default": 0,
-        "description": "add ICA_AROMA to your preprocessing stream",
-        "type": "flag",
-        "visible": true,
-        "required": false
-      }
-    },
-
-    {
-      "id": "ICA_AROMA_DIMENSIONALITY",
-      "details": {
-        "argument": "--aroma-melodic-dimensionality ",
-        "showArgument": true,
-        "description": "Exact or maximum number of MELODIC components to estimate (positive = exact, negative = maximum)"
-      },
-      "value": {
-        "default": null,
-        "type": "number",
-        "visible": true,
-        "required": false
-      }
-
-    },
 
 
-    {
-      "id": "FD_SPIKE",
-      "details": {
-        "argument": "--fd-spike-threshold ",
-        "showArgument": true,
-        "description": "Threshold for flagging a frame as an outlier on the basis of framewise displacement"
-      },
-      "value": {
-        "default": null,
-        "type": "number",
-        "visible": true,
-        "required": false
-      }
-
-    },
     {
       "id": "CIFTI_OUTPUT",
       "details": {
@@ -192,8 +130,21 @@
         "visible": true,
         "required": false
       }
+    },
+    {
+      "id": "ANAT_ONLY",
+      "details": {
+        "argument": "--anat-only ",
+        "showArgument": true,
+        "description": "run anatomical workflows only"
+      },
+      "value": {
+        "default": 0,
+        "type": "flag",
+        "visible": true,
+        "required": false
+      }
     }
-
 
   ]
 }
