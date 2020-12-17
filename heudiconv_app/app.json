@@ -41,36 +41,12 @@
       "required": true
     }
   },
-  {
-    "id": "PARTICIPANT_LABEL",
-    "value": {
-      "default": "01",
-      "description": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
-      "type": "string",
-      "visible": true,
-      "required": false
-    },
-    "details": {
-      "label": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
-      "showArgument": false,
-      "argument": "participant --participant_label "
-    }
-  },
-  {
-    "id": "OUTPUT_DIR",
-    "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
-      "type": "string",
-      "visible": true,
-      "required": true
-    }
-  },
+
   {
     "id": "DICOM_DIR_TEMPLATE",
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "default": "input dicom directory",
+      "description": "location of dicomdir that can be indexed with subject id {subject} and session {session}. Tarballs (can be compressed) are supported in addition to directory. All matching tarballs for a subject are extracted and their content processed in a single pass",
       "type": "string",
       "visible": true,
       "required": true
@@ -79,8 +55,8 @@
   {
     "id": "FILES",
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "default": "don't use if dicom directory is provided - separate files",
+      "description": "Files (tarballs, dicoms) or directories containing files to process. Cannot be provided if using –dicom_dir_template or –subjects",
       "type": "string",
       "visible": true,
       "required": true
@@ -88,104 +64,183 @@
   },
   {
     "id": "LIST_OF_SUBJECTS",
+  "details": {
+    "argument": "--subjects ",
+    "showArgument": true,
+    "description": "list of subjects - required for dicom template. If not provided, DICOMS would first be sorted and subject IDs deduced by the heuristic"
+  },
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "default": null,
       "type": "string",
       "visible": true,
       "required": true
     }
   },
+  {
+    "id": "CONVERTER",
+    "details": {
+      "description": "",
+      "argument": "--converter ",
+      "showArgument": true,
+    },
+    "value": {
+      "default": "dcm2niix",
+      "type": "enumeration",
+      "enumValues": ["dcm2niix", "none"],
+      "visible": true,
+      "required": false
+    }
+  },
+  {
+    "id": "OUTDIR",
+    "value": {
+      "default": "outputs",
+      "description": "output directory for conversion setup (for further customization and future reference. This directory will refer to non-anonymized subject IDs",
+      "type": "string",
+      "visible": true,
+      "required": true
+    }
+  },
+
   {
     "id": "LOCATOR",
+  "details": {
+    "argument": "--locator ",
+    "showArgument": true,
+    "description": "study path under outdir. If provided, it overloads the value provided by the heuristic. If –datalad is enabled, every directory within locator becomes a super-dataset thus establishing a hierarchy. Setting to “unknown” will skip that dataset"
+  },
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "default": null,
       "type": "string",
       "visible": true,
       "required": true
     }
   },
+
+
   {
-    "id": "CONV_OUTDIR",
+    "id": "CONVERTED_OUTDIR",
+    "details": {
+      "argument": "--conv-outdir ",
+      "showArgument": true,
+      "description": "	output directory for converted files. By default this is identical to –outdir. This option is most useful in combination with –anon-cmd"
+    },
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "default": null,
       "type": "string",
       "visible": true,
-      "required": true
+      "required": false
     }
   },
   {
     "id": "ANON_CMD",
+    "details": {
+      "argument": "--anon-cmd ",
+      "showArgument": true,
+      "description": "command to run to convert subject IDs used for DICOMs to anonymized IDs. Such command must take a single argument and return a single anonymized ID. Also see –conv-outdir"
+    },
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "default": null,
       "type": "string",
       "visible": true,
-      "required": true
+      "required": false
     }
   },
+
   {
     "id": "HEURISTIC",
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "default": "heuristic file (python)",
+      "description": "Name of a known heuristic or path to the Pythonscript containing heuristic",
       "type": "string",
       "visible": true,
       "required": true
     }
   },
+
   {
     "id": "SESSION_FOR_LONGITUDINAL",
+    "details": {
+      "argument": "--ses ",
+      "showArgument": true,
+      "description": "session for longitudinal study_sessions, default is none"
+    },
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
-      "type": "string",
+      "default": 0,
+      "type": "flag",
       "visible": true,
-      "required": true
+      "required": false
+    }
+  },
+
+  {
+    "id": "BIDS",
+    "details": {
+      "argument": "--bids ",
+      "showArgument": true,
+      "description": "flag for output into BIDS structure"
+    },
+    "value": {
+      "default": 0,
+      "type": "flag",
+      "visible": true,
+      "required": false
+    }
+  },
+
+  {
+    "id": "OVERWRITE",
+    "details": {
+      "argument": "--overwrite ",
+      "showArgument": true,
+      "description": "flag to allow overwriting existing converted files"
+    },
+    "value": {
+      "default": 0,
+      "type": "flag",
+      "visible": true,
+      "required": false
     }
   },
   {
-    "id": "GROUPING",
+    "id": "DATALAD",
+    "details": {
+      "argument": "--datalad ",
+      "showArgument": true,
+      "description": "Store the entire collection as DataLad dataset(s). Small files will be committed directly to git, while large to annex. New version (6) of annex repositories will be used in a “thin” mode so it would look to mortals as just any other regular directory (i.e. no symlinks to under .git/annex). For now just for BIDS mode."
+    },
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
-      "type": "string",
+      "default": 0,
+      "type": "flag",
       "visible": true,
-      "required": true
+      "required": false
     }
   },
-  {
-    "id": "RANDOM_SEED",
-    "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
-      "type": "string",
-      "visible": true,
-      "required": true
-    }
-  },
+
   {
     "id": "DCMCONFIG",
+    "details": {
+      "argument": "--dcmconfig ",
+      "showArgument": true,
+      "description": "JSON file for additional dcm2niix configuration"
+    },
     "value": {
-      "default": "outputs",
-      "description": "the output path for the outcomes of preprocessing and visual reports",
+      "default": null,
       "type": "string",
       "visible": true,
-      "required": true
+      "required": false
     }
+  }
+
   }]
 }
-heudiconv \
---dicom_dir_template ${DICOM_DIR_TEMPLATE} | --files ${FILES} \
---subjects ${LIST_OF_SUBJECTS} \
---converter {dcm2niix,none}] \
---outdir ${OUTDIR} \
---locator ${LOCATOR} --conv-outdir ${CONV_OUTDIR} \
---anon-cmd ${ANON_CMD} \
---heuristic ${HEURISTIC} --with-prov \
---ses ${SESSION_FOR_LONGITUDINAL} --bids --overwrite \
---datalad] --dbg \
---grouping {studyUID,accession_number} --minmeta \
---random-seed ${RANDOM_SEED} --dcmconfig ${DCMCONFIG} \
+heudiconv [-h] [--version]
+                 [-d DICOM_DIR_TEMPLATE | --files [FILES [FILES ...]]]
+                 [-s [SUBJS [SUBJS ...]]] [-c {dcm2niix,none}] [-o OUTDIR]
+                 [-l LOCATOR] [-a CONV_OUTDIR] [--anon-cmd ANON_CMD]
+                 [-f HEURISTIC] [-p] [-ss SESSION] [-b] [--overwrite]
+                 [--datalad] [--dbg]
+                 [--command {heuristics,heuristic-info,ls,populate-templates,sanitize-jsons,treat-jsons}]
+                 [-g {studyUID,accession_number}] [--minmeta]
+                 [--random-seed RANDOM_SEED] [--dcmconfig DCMCONFIG]
+                 [-q {SLURM,None}] [--queue-args QUEUE_ARGS]
