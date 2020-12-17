@@ -1,9 +1,9 @@
 {
   "name": "test heudiconv",
-  "appId": "a2cps-heudiconv-0.5.4",
+  "appId": "a2cps-heudiconv-0.8.0",
   "archive": true,
   "maxRunTime": "24:00:00",
-  "archivePath": "a2cps/heudiconv-0.5.4",
+  "archivePath": "a2cps/heudiconv-0.8.0",
   "archiveSystem": "a2cps.home.heejung",
   "archiveOnAppError": true,
   "inputs": {
