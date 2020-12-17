@@ -84,7 +84,7 @@
     {
       "id": "IGNORE_SLICE_TIMING",
       "details": {
-        "argument": "--ignore splicetiming ",
+        "argument": "--ignore slicetiming ",
         "showArgument": true,
         "description": "Ignore slice timing correction for the functionals in the pipeline"
       },
