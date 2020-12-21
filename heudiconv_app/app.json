@@ -121,7 +121,7 @@
       "default": null,
       "type": "string",
       "visible": true,
-      "required": true
+      "required": false
     }
   },
 
@@ -157,12 +157,17 @@
 
   {
     "id": "HEURISTIC",
+    "details": {
+      "argument": "--heuristic ",
+      "showArgument": true,
+      "description": "Name of a known heuristic or path to the Pythonscript containing heuristic"
+    },
     "value": {
       "default": "heuristic file (python)",
       "description": "Name of a known heuristic or path to the Pythonscript containing heuristic",
       "type": "string",
       "visible": true,
-      "required": true
+      "required": false
     }
   },
 
