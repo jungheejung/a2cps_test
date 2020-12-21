@@ -73,7 +73,7 @@
       "details": {
         "description": "tool to use for DICOM conversion. Setting to “none” disables the actual conversion step – usefulfor testing heuristics.",
         "argument": "--converter ",
-        "showArgument": true,
+        "showArgument": true
       },
       "value": {
         "default": "dcm2niix",
