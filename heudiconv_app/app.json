@@ -14,23 +14,7 @@
   "shortDescription": "{{ app.description }}",
   "templatePath": "runner-template.sh",
   "testPath": "tester.sh",
-  "inputs": [
-  {
-  "id": "BIDS_DIRECTORY",
-  "value": {
-    "default": "agave://a2cps.storage.public/a2cps_openneuro_testdata/",
-    "visible": true,
-    "required": true
-  },
-  "semantics": {
-    "ontology": [
-      "https://bids.neuroimaging.io/specification.html"
-    ]
-  },
-  "details": {
-    "label": "The root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder)."
-  }
-  }],
+  "inputs": [ ],
   "parameters": [{
     "id": "CONTAINER_IMAGE",
     "value": {
@@ -50,7 +34,7 @@
       "description": "location of dicomdir that can be indexed with subject id {subject} and session {session}. Tarballs (can be compressed) are supported in addition to directory. All matching tarballs for a subject are extracted and their content processed in a single pass"
     },
     "value": {
-      "default": "input dicom directory",
+      "default": "/work/07514/heejung/test_data/submissions/uchicago/UC0001V1_A2CPS/",
       "type": "string",
       "visible": true,
       "required": false
