@@ -44,22 +44,30 @@
 
   {
     "id": "DICOM_DIR_TEMPLATE",
+    "details": {
+      "argument": "--dicom_dir_template ",
+      "showArgument": true,
+      "description": "location of dicomdir that can be indexed with subject id {subject} and session {session}. Tarballs (can be compressed) are supported in addition to directory. All matching tarballs for a subject are extracted and their content processed in a single pass"
+    },
     "value": {
       "default": "input dicom directory",
-      "description": "location of dicomdir that can be indexed with subject id {subject} and session {session}. Tarballs (can be compressed) are supported in addition to directory. All matching tarballs for a subject are extracted and their content processed in a single pass",
       "type": "string",
       "visible": true,
-      "required": true
+      "required": false
     }
   },
   {
     "id": "FILES",
+    "details": {
+      "argument": "--files ",
+      "showArgument": true,
+      "description": "Files (tarballs, dicoms) or directories containing files to process. Cannot be provided if using –dicom_dir_template or –subjects"
+    },
     "value": {
       "default": "don't use if dicom directory is provided - separate files",
-      "description": "Files (tarballs, dicoms) or directories containing files to process. Cannot be provided if using –dicom_dir_template or –subjects",
       "type": "string",
       "visible": true,
-      "required": true
+      "required": false
     }
   },
   {
@@ -73,13 +81,13 @@
       "default": null,
       "type": "string",
       "visible": true,
-      "required": true
+      "required": false
     }
   },
   {
     "id": "CONVERTER",
     "details": {
-      "description": "",
+      "description": "tool to use for DICOM conversion. Setting to “none” disables the actual conversion step – usefulfor testing heuristics.",
       "argument": "--converter ",
       "showArgument": true,
     },
@@ -234,13 +242,3 @@
 
   }]
 }
-heudiconv [-h] [--version]
-                 [-d DICOM_DIR_TEMPLATE | --files [FILES [FILES ...]]]
-                 [-s [SUBJS [SUBJS ...]]] [-c {dcm2niix,none}] [-o OUTDIR]
-                 [-l LOCATOR] [-a CONV_OUTDIR] [--anon-cmd ANON_CMD]
-                 [-f HEURISTIC] [-p] [-ss SESSION] [-b] [--overwrite]
-                 [--datalad] [--dbg]
-                 [--command {heuristics,heuristic-info,ls,populate-templates,sanitize-jsons,treat-jsons}]
-                 [-g {studyUID,accession_number}] [--minmeta]
-                 [--random-seed RANDOM_SEED] [--dcmconfig DCMCONFIG]
-                 [-q {SLURM,None}] [--queue-args QUEUE_ARGS]
