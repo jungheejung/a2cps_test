@@ -1,0 +1,16 @@
+{
+  "name": "test bidsvalidator",
+  "appId": "a2cps-bidsvalidator",
+  "archive": true,
+  "maxRunTime": "24:00:00",
+  "archivePath": "a2cps/bidsvalidator-1.6.1",
+  "archiveSystem": "a2cps.home.heejung",
+  "archiveOnAppError": true,
+  "inputs": {
+    "BIDS_DIRECTORY": "agave://a2cps.storage.public/a2cps_openneuro_testdata"
+  },
+  "parameters": {
+    "PARTICIPANT_LABEL": "02",
+    "OUTPUT_DIR": "outputs"
+  }
+}
