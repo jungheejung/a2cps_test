@@ -2,6 +2,7 @@ from reactors.utils import Reactor, agaveutils
 import copy
 import sys
 import json
+import os
 
 
 def check_metadata_file(r, file_uri):
@@ -47,22 +48,28 @@ def check_metadata_file(r, file_uri):
     return job_def
 
 
-def submit_fmriprep(r,participant_label, job_def):
+def submit_heudiconv(r,site,subject,session,zipfile,outdir):
     # Create agave client from reactor object
     ag = r.client
     # copy our job.json from config.yml
+    job_def = copy.copy(r.settings.heudiconv)
     parameters = job_def["parameters"]
     # Define the input for the job as the file that
     # was sent in the notificaton message
-    parameters["PARTICIPANT_LABEL"] = participant_label
+    parameters["FILES"] = zipfile
+    # split subject from path
+    parameters['OUTDIR'] = os.path.dirname(outdir)
+    parameters['LIST_OF_SUBJECTS'] = subject
+    #parameters['LOCATOR'] = site + '/bids'
+    parameters['SESSION_FOR_LONGITUDINAL'] = session
     job_def.parameters = parameters
     #job_def.archiveSystem = system
 
     # Submit the job in a try/except block
     try:
         # Submit the job and get the job ID
-        #job_id = ag.jobs.submit(body=job_def)['id']
-        #print(job_id)
+        job_id = ag.jobs.submit(body=job_def)['id']
+        print(job_id)
         print(json.dumps(job_def, indent=4))
     except Exception as e:
         print(json.dumps(job_def, indent=4))
@@ -82,15 +89,13 @@ def main():
     #print(context)
     # get the message that was sent to the actor
     message = context.message_dict
-    print(message)
-    # check the file_uri from the message
-    file_uri = message['file_uri']
-    # depending on the file_uri, set fmriprp parameters for a rest or cuff fmri
-    job_def = check_metadata_file(r, file_uri)
-    # pull in the participant_label
-    participant_label = message['participant_label']
-    # use submit function to submit job to fmriprep
-    submit_fmriprep(r,participant_label,job_def)
+    site = message['site']
+    subject = message['subject']
+    session = message['session']
+    zipfile = message['zipfile']
+    outdir = message['outdir']
+
+    submit_heudiconv(r,site,subject,session,zipfile,outdir)
 
 
 

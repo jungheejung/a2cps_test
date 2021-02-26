@@ -34,7 +34,7 @@
 				"description": "location of dicomdir that can be indexed with subject id {subject} and session {session}. Tarballs (can be compressed) are supported in addition to directory. All matching tarballs for a subject are extracted and their content processed in a single pass"
 			},
 			"value": {
-				"default": "/work/07514/heejung/test_data/submissions/uchicago/UC0001V1_A2CPS/",
+				"default": null,
 				"type": "string",
 				"visible": true,
 				"required": false
@@ -45,10 +45,10 @@
 			"details": {
 				"argument": "--files ",
 				"showArgument": true,
-				"description": "Files (tarballs, dicoms) or directories containing files to process. Cannot be provided if using –dicom_dir_template or –subjects"
+				"description": "Files (tarballs, dicoms) or directories containing files to process. Cannot be provided if using –dicom_dir_template or –subjects, don't use if dicom directory is provided separate files"
 			},
 			"value": {
-				"default": "don't use if dicom directory is provided - separate files",
+				"default": null,
 				"type": "string",
 				"visible": true,
 				"required": false
@@ -86,7 +86,7 @@
 		{
 			"id": "OUTDIR",
 			"value": {
-				"default": "outputs",
+				"default": null,
 				"description": "output directory for conversion setup (for further customization and future reference. This directory will refer to non-anonymized subject IDs",
 				"type": "string",
 				"visible": true,
@@ -97,7 +97,7 @@
 		{
 			"id": "LOCATOR",
 			"details": {
-				"argument": "--locator ",
+				"argument": "--locator",
 				"showArgument": true,
 				"description": "study path under outdir. If provided, it overloads the value provided by the heuristic. If –datalad is enabled, every directory within locator becomes a super-dataset thus establishing a hierarchy. Setting to “unknown” will skip that dataset"
 			},
@@ -147,7 +147,7 @@
 				"description": "Name of a known heuristic or path to the Pythonscript containing heuristic"
 			},
 			"value": {
-				"default": "heuristic file (python)",
+				"default": "a2cps.py",
 				"description": "Name of a known heuristic or path to the Pythonscript containing heuristic",
 				"type": "string",
 				"visible": true,
@@ -163,8 +163,8 @@
 				"description": "session for longitudinal study_sessions, default is none"
 			},
 			"value": {
-				"default": 0,
-				"type": "flag",
+				"default": null,
+				"type": "string",
 				"visible": true,
 				"required": false
 			}

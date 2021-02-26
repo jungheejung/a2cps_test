@@ -19,25 +19,7 @@ fi
 #            container_exec centos:7 uname -a
 
 # Echo command to std out
-echo container_exec ${CONTAINER_IMAGE} \
-heudiconv \
-${DICOM_DIR_TEMPLATE} ${FILES} \
-${LIST_OF_SUBJECTS} \
-${CONVERTER} \
---outdir ${OUTDIR} \
-${LOCATOR} ${CONV_OUTDIR} ${ANON_CMD} \
-${HEURISTIC} \
-${SESSION_FOR_LONGITUDINAL} ${BIDS} ${OVERWRITE} \
-${DATALAD} ${DCMCONFIG}
+echo singularity run  docker://${CONTAINER_IMAGE} ${BIDS_DIRECTORY}
 
 
-container_exec ${CONTAINER_IMAGE} \
-heudiconv \
-${DICOM_DIR_TEMPLATE} ${FILES} \
-${LIST_OF_SUBJECTS} \
-${CONVERTER} \
---outdir ${OUTDIR} \
-${LOCATOR} ${CONV_OUTDIR} ${ANON_CMD} \
-${HEURISTIC} \
-${SESSION_FOR_LONGITUDINAL} ${BIDS} ${OVERWRITE} \
-${DATALAD} ${DCMCONFIG}
+singularity run  docker://${CONTAINER_IMAGE} ${BIDS_DIRECTORY}

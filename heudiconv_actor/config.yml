@@ -2,48 +2,23 @@
 logs:
   level: DEBUG
   token: ~
-cuff:
-  appId: fmriprep_LTS-20.2.1
-  name: fmriprep_test
+heudiconv:
+  appId: urrutia-heudiconv-0.9.0
+  name: heudiconv_test
   archive: true
-  archivePath: testing/actor-fmriprep-20.2.1
-  archiveSystem: a2cps.home.heejung
-  inputs:
-    BIDS_DIRECTORY: agave://a2cps.storage.public/a2cps_openneuro_testdata/
+  archivePath: testing/actor-heudiconv
+  archiveSystem: a2cps.home.urrutia
+  batchQueue: flat-quadrant
+  maxRunTime: 48:00:00
   parameters:
-    PARTICIPANT_LABEL: sub-01
-    OUTPUT_DIR: outputs
-    HEAD_MOTION: 9
-    ICA_AROMA_USE: false
-    ICA_AROMA_DIMENSIONALITY:
-    CIFTI_OUTPUT: --cifti-output 91K
-    IGNORE_FIELD_MAPS: false
-    IGNORE_SLICE_TIMING: false
-    DUMMY_SCANS:
-    FD_SPIKE: 0.9
-  notifications:
-    -
-      event: FINISHED
-      url: your@email.com
-rest:
-  appId: fmriprep_LTS-20.2.1
-  name: fmriprep_test
-  archive: true
-  archivePath: testing/actor-fmriprep-20.2.1
-  archiveSystem: a2cps.home.heejung
-  inputs:
-    BIDS_DIRECTORY: agave://a2cps.storage.public/a2cps_openneuro_testdata/
-  parameters:
-    PARTICIPANT_LABEL: sub-01
-    OUTPUT_DIR: outputs
-    HEAD_MOTION: 9
-    ICA_AROMA_USE: true
-    ICA_AROMA_DIMENSIONALITY:
-    CIFTI_OUTPUT: --cifti-output 91K
-    IGNORE_FIELD_MAPS: false
-    IGNORE_SLICE_TIMING: false
-    DUMMY_SCANS:
-    FD_SPIKE: 0.3
+    FILES: norshore/bids/1
+    LIST_OF_SUBJECTS: sub-01
+    OUTDIR: outputs
+    SESSION_FOR_LONGITUDINAL: session1
+    BIDS: true
+    HEURISTIC: a2cps.py
+    LOCATOR: =''
+
   notifications:
     -
       event: FINISHED
