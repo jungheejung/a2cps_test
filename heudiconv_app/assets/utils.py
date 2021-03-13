@@ -31,21 +31,21 @@ def delete_trigger_tag(filepath):
     Deletes the trigger tag (0018,1060) from the DICOM file.
     """
     # Copy the data, add suffix "_orig" to the original data and return the path of duplicate data
-    new_path,flag  = make_copy(filepath)
+    new_path,_  = make_copy(filepath)
 
-    if not flag:
-        # Only fMRI images will have the tag. Selecting all the sub-directories of 'func'  directory
-        fmri_image_path = os.path.join(new_path,'func')
-        dirs = get_subdirectory(fmri_image_path)
+    dirs = get_subdirectory(filepath)
 
-        for func in dirs:
-            print("Deleting tag for %s"%func)
-            for i in sorted(os.listdir(func)):
-                ds = pydicom.read_file(os.path.join(func,i))
+    for func in dirs:
+        print("Deleting tag for %s"%func)
+        for i in sorted(os.listdir(func)):
+            ds = pydicom.read_file(os.path.join(func,i))
+            try:
+                # Only fMRI images will have the tag
                 # Delete the dicom tag 0018,1060. This tag represents the Trigger value
                 del(ds['0018','1060'])
                 # save the edited dicom file in the same directory
                 ds.save_as(os.path.join(func,i))
-            print("Done! New dicoms are stored in %s"%os.path.join(func))
-    else:
-        print("Skipping!")
+            except:
+                print("Skipping! Dicoms in %s do not have trigger tag..."%os.path.join(func))
+                break
+    print("Done!")
