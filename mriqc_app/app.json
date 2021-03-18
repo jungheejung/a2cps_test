@@ -14,23 +14,7 @@
   "shortDescription": "{{ app.description }}",
   "templatePath": "runner-template.sh",
   "testPath": "tester.sh",
-  "inputs": [{
-    "id": "BIDS_DIRECTORY",
-    "value": {
-      "default": "agave://a2cps.storage.public/a2cps_openneuro_testdata/",
-      "visible": true,
-      "required": true
-    },
-    "semantics": {
-      "ontology": [
-        "https://bids.neuroimaging.io/specification.html"
-      ]
-    },
-    "details": {
-      "label": "BIDS_DIRECTORY",
-      "description": "The root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder)."
-    }
-  }],
+  "inputs": [],
   "parameters": [{
       "id": "CONTAINER_IMAGE",
       "value": {
@@ -39,6 +23,23 @@
         "type": "string",
         "visible": false,
         "required": true
+      }
+    },
+    {
+      "id": "BIDS_DIRECTORY",
+      "value": {
+        "default": "agave://a2cps.storage.public/a2cps_openneuro_testdata/",
+        "visible": true,
+        "required": true
+      },
+      "semantics": {
+        "ontology": [
+          "https://bids.neuroimaging.io/specification.html"
+        ]
+      },
+      "details": {
+        "label": "BIDS_DIRECTORY",
+        "description": "The root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder)."
       }
     },
     {

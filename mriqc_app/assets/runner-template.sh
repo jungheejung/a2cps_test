@@ -15,9 +15,9 @@ fi
 
 # BUG Input Directory ${BIDS_DIRECTORY} not defined
 # using some bash tricks to get if from the participant label
-DIR=*/*-${PARTICIPANT_LABEL}
-DIR=$(echo ${DIR} | cut -d "/" -f1)
-echo Input is ${DIR}
+# DIR=*/*-${PARTICIPANT_LABEL}
+# DIR=$(echo ${DIR} | cut -d "/" -f1)
+# echo Input is ${DIR}
 
 mkdir -p  ${OUTPUT_DIR}
 PYTHONPATH=""
@@ -29,7 +29,7 @@ PYTHONPATH=""
 # Echo command to std out
 echo container_exec ${CONTAINER_IMAGE} \
                mriqc \
-               ${DIR} \
+               ${BIDS_DIRECTORY} \
                ${OUTPUT_DIR} \
                participant --participant-label ${PARTICIPANT_LABEL} \
                --n_procs 16 \
@@ -44,7 +44,7 @@ echo container_exec ${CONTAINER_IMAGE} \
 
 container_exec ${CONTAINER_IMAGE} \
                mriqc \
-               ${DIR} \
+               ${BIDS_DIRECTORY} \
                ${OUTPUT_DIR} \
                participant --participant-label ${PARTICIPANT_LABEL} \
                --n_procs 16 \
