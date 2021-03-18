@@ -195,6 +195,21 @@
     "visible": true,
     "required": false
   }
+},
+{
+  "id": "BIDS_FILTER_FILE",
+  "details": {
+    "argument": "--bids-filter-file ",
+    "showArgument": false,
+    "description": "run anatomical workflows only"
+  },
+  "value": {
+    "default": "",
+    "type": "enumeration",
+    "enumValues": ["--bids-filter-file rest_only.json", "--bids-filter-file task_only.json", {"": "undefined"}],
+    "visible": true,
+    "required": false
+  }
 }
 
 

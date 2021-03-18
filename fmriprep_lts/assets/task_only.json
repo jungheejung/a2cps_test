@@ -1,7 +1,7 @@
 {
     "bold": {
         "datatype": "func",
-        "task": "rest",
+        "task": "cuff",
         "suffix": "bold"
     }
     }
