@@ -42,4 +42,3 @@ container_exec ${CONTAINER_IMAGE} \
                ${ICA_AROMA_USE} ${ICA_AROMA_DIMENSIONALITY} ${FD_SPIKE} ${CIFTI_OUTPUT} ${ANAT_ONLY}\
                --fs-license-file /opt/freesurfer_license/license.txt
 
-rm -rf ${DIR}

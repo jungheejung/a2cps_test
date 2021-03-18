@@ -30,6 +30,7 @@
       "value": {
         "default": "agave://a2cps.storage.public/a2cps_openneuro_testdata/",
         "visible": true,
+        "type": "string",
         "required": true
       },
       "semantics": {
