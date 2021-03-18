@@ -4,6 +4,6 @@
   "archive": false,
   "inputs": {},
   "parameters": {
-    "BIDS_DIRECTORY": "/work/03372/yoh/stampede2/a2cps/data/uchicago/bids/"
+    "BIDS_DIRECTORY": "/work/03372/yoh/stampede2/a2cps/data/uic/bids/"
   }
 }

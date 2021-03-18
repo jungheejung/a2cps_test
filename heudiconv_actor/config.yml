@@ -9,7 +9,7 @@ heudiconv:
   archivePath: testing/actor-heudiconv
   archiveSystem: a2cps.home.urrutia
   batchQueue: flat-quadrant
-  maxRunTime: 48:00:00
+  maxRunTime: "48:00:00"
   parameters:
     FILES: norshore/bids/1
     LIST_OF_SUBJECTS: sub-01
