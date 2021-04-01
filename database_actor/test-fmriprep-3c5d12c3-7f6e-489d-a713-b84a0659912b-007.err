@@ -1,0 +1,6 @@
+INFO:    Using cached SIF image
+/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/validation.py:46: UserWarning: The ability to pass arguments to BIDSLayout that control indexing is likely to be removed in future; possibly as early as PyBIDS 0.14. This includes the `config_filename`, `ignore`, `force_index`, and `index_metadata` arguments. The recommended usage pattern is to initialize a new BIDSLayoutIndexer with these arguments, and pass it to the BIDSLayout via the `indexer` argument.
+  warnings.warn("The ability to pass arguments to BIDSLayout that control "
+Could not generate CITATION.html file:
+pandoc -s --bibliography /usr/local/miniconda/lib/python3.7/site-packages/fmriprep/data/boilerplate.bib --filter pandoc-citeproc --metadata pagetitle="fMRIPrep citation boilerplate" /scratch/05369/urrutia/urrutia/job-3c5d12c3-7f6e-489d-a713-b84a0659912b-007-test-fmriprep/outputs/fmriprep/logs/CITATION.md -o /scratch/05369/urrutia/urrutia/job-3c5d12c3-7f6e-489d-a713-b84a0659912b-007-test-fmriprep/outputs/fmriprep/logs/CITATION.html
+slurmstepd: error: *** JOB 7471484 ON c401-123 CANCELLED AT 2021-03-24T03:01:27 DUE TO TIME LIMIT ***

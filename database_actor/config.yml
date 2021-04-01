@@ -1,0 +1,25 @@
+---
+logs:
+  level: DEBUG
+  token: ~
+file_job:
+  appId: urrutia-heudiconv-0.9.0
+  name: heudiconv_test
+  archive: true
+  archivePath: testing/actor-heudiconv
+  archiveSystem: a2cps.home.urrutia
+  batchQueue: flat-quadrant
+  maxRunTime: "48:00:00"
+  parameters:
+    FILES: norshore/bids/1
+    LIST_OF_SUBJECTS: sub-01
+    OUTDIR: outputs
+    SESSION_FOR_LONGITUDINAL: session1
+    BIDS: true
+    HEURISTIC: a2cps.py
+    LOCATOR: =''
+
+  notifications:
+    -
+      event: FINISHED
+      url: your@email.com
